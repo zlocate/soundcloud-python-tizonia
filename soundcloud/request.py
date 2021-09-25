@@ -88,7 +88,6 @@ def namespaced_query_string(d, prefix=""):
 def make_request(method, url, params):
     """Make an HTTP request, formatting params as required."""
     empty = []
-
     # TODO
     # del params[key]
     # without list
@@ -104,7 +103,8 @@ def make_request(method, url, params):
     kwargs = {
         'allow_redirects': allow_redirects,
         'headers': {
-            'User-Agent': soundcloud.USER_AGENT
+            'User-Agent': soundcloud.USER_AGENT,
+            'Authorization': 'OAuth '+params['oauth_token'],
         }
     }
     # options, not params
@@ -121,7 +121,9 @@ def make_request(method, url, params):
     params = hashconversions.to_params(params)
     files = namespaced_query_string(extract_files_from_dict(params))
     data = namespaced_query_string(remove_files_from_dict(params))
-
+    # Delete oauth_token and client_id from qs params list
+    data.pop('oauth_token', None)
+    data.pop('client_id', None)
     request_func = getattr(requests, method, None)
     if request_func is None:
         raise TypeError('Unknown method: %s' % (method,))

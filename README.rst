@@ -21,11 +21,8 @@ Installation
 
 To install soundcloud-python, simply: ::
 
-    pip install soundcloud
+    pip install --upgrade --force-reinstall https://github.com/zlocate/soundcloud-python-tizonia/archive/master.zip
 
-Or if you're not hip to the pip: ::
-
-    easy_install soundcloud
 
 Basic Use
 ---------

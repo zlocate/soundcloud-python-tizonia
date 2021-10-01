@@ -103,10 +103,11 @@ def make_request(method, url, params):
     kwargs = {
         'allow_redirects': allow_redirects,
         'headers': {
-            'User-Agent': soundcloud.USER_AGENT,
-            'Authorization': 'OAuth '+params['oauth_token'],
+            'User-Agent': soundcloud.USER_AGENT
         }
     }
+    if 'oauth_token' in params:
+        kwargs['headers']['Authorization'] = 'OAuth '+params['oauth_token'],
     # options, not params
     if 'verify_ssl' in params:
         if params['verify_ssl'] is False:

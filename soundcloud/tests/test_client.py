@@ -110,7 +110,8 @@ def test_method_dispatching_get_request_readonly(fake_get):
         }))
     headers = {
         'User-Agent': soundcloud.USER_AGENT,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': 'OAuth xxx',
     }
     (fake_get.expects_call()
              .with_args(expected_url, headers=headers, allow_redirects=True)
@@ -131,7 +132,8 @@ def test_method_dispatching_post_request(fake_post):
         'client_id': 'foo'
     }
     headers = {
-        'User-Agent': soundcloud.USER_AGENT
+        'User-Agent': soundcloud.USER_AGENT,
+        'Authorization': 'OAuth xxx',
     }
     (fake_post.expects_call()
               .with_args(expected_url,
@@ -157,7 +159,8 @@ def test_proxy_servers(fake_request):
     )
     headers = {
         'User-Agent': soundcloud.USER_AGENT,
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': 'OAuth xxx',
     }
     (fake_request.expects_call()
                  .with_args(expected_url,
